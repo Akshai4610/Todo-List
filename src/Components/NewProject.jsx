@@ -16,9 +16,9 @@ export default function NewProject() {
       </menu>
       <form >
                 <div>
-                    <InputLabel Label='Title'/>
+                    <InputLabel type='text' Label='Title'/>
                     <InputLabel Label='Description' textArea/>
-                    <InputLabel Label='Due Date'/>
+                    <InputLabel type='date' Label='Due Date'/>
                 </div>
         </form>
     </div>
