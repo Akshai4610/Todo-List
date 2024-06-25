@@ -1,7 +1,7 @@
 import SideBar from "./Components/SideBar";
 import NewProject from "./Components/NewProject";
 import Display from "./Components/Display";
-import { useState,useId } from "react";
+import { useState } from "react";
 
 function App() {
   const [projectsState, setProjects] = useState({
@@ -10,37 +10,49 @@ function App() {
   });
 
   function handleStartProject() {
-    setProjects((prev) => {
+    setProjects((prevState) => {
       return {
-        ...prev,
+        ...prevState,
         selectedProjectId: null,
       };
     });
   }
+  
+  function handleCancelProject() {
+    setProjects((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+      };
+    });
+  }
 
-  function handleAddProject(projectData){
-    setProjects(prev=>{
-      const incomingProject={
+  function handleAddProject(projectData) {
+    setProjects((prevState) => {
+      const incomingProject = {
         ...projectData,
-            id:useId()
-      }
-      return{
-        ...prev,
-        projects:[...prev.projects,incomingProject]
-      }
-    })
+        id: Math.random(),
+      };
+      return {
+        ...prevState,
+        projects: [...prevState.projects, incomingProject],
+      };
+    });
   }
 
   let content;
 
   if (projectsState.selectedProjectId === null) {
-    content = <NewProject onAdd={handleAddProject}/>;
+    content = <NewProject onAdd={handleAddProject} onCancel={handleCancelProject}/>;
   } else if (projectsState.selectedProjectId === undefined) {
     content = <Display btnClicked={handleStartProject} />;
   }
   return (
     <main className="h-screen my-8 flex gap-8">
-      <SideBar btnClicked={handleStartProject} />
+      <SideBar
+        btnClicked={handleStartProject}
+        projects={projectsState.projects}
+      />
       {content}
     </main>
   );
