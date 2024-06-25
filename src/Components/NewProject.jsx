@@ -65,7 +65,7 @@ export default function NewProject({ onAdd, onCancel }) {
           <div>
             <InputLabel ref={title} type="text" Label="Title" required />
             <InputLabel ref={description} Label="Description" textArea />
-            <InputLabel ref={dueDate} type="date" Label="Due Date" />
+            <InputLabel ref={dueDate} type="date" max='9999-12-31' Label="Due Date" />
           </div>
         </form>
       </div>
