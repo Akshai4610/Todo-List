@@ -1,9 +1,9 @@
-import Button from "./Button";
+import Button from "../Predefined_Elements/Button";
 
 export default function SideBar({
-  btnClicked,
+  btnProjectStart,
   projects,
-  onSelect,
+  onSelectProject,
   selectedProjectId,
 }) {
   return (
@@ -12,23 +12,23 @@ export default function SideBar({
         Your Project
       </h1>
       <div>
-        <Button onClick={btnClicked}>+ Add Project</Button>
+        <Button onClick={btnProjectStart}>+ Add Project</Button>
       </div>
       <ul className="mt-8">
         {projects.map((projectData) => {
           let cssClasses =
             "w-full text-left px-2 py-1 rounded-sm my-1 hover:text-stone-200 hover:bg-stone-800";
 
-          if (projectData.id === selectedProjectId) {
+          if (projectData.projectId === selectedProjectId) {
             cssClasses += " bg-stone-800 text-stone-200";
           } else {
             cssClasses += " text-stone-400";
           }
 
           return (
-            <li key={projectData.id}>
+            <li key={projectData.projectId}>
               <button
-                onClick={() => onSelect(projectData.id)}
+                onClick={() => onSelectProject(projectData.projectId)}
                 className={cssClasses}
               >
                 {projectData.title}

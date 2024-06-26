@@ -1,7 +1,7 @@
 import { useRef } from "react";
-import InputLabel from "./InputLabel.jsx";
-import DialogModal from "./dialogModal.jsx";
-import HeadPara from "./HeadPara.jsx";
+import InputLabel from "./Predefined_Elements/InputLabel.jsx";
+import DialogModal from "./Predefined_Elements/DialogModal.jsx";
+import HeadPara from "./Predefined_Elements/HeadPara.jsx";
 
 const para_3 =
   "Please make sure, you provide a valid value for every input field.";
@@ -23,16 +23,17 @@ export default function NewProject({ onAdd, onCancel }) {
       projectTitle.trim() === "" ||
       projectDescription.trim() === "" ||
       projectDueDate.trim() === ""
-    ) {
+    )
+    {
       //error modal
       model.current.open();
-    }
-
+    }else{
     onAdd({
       title: projectTitle,
       description: projectDescription,
       dueDate: projectDueDate,
     });
+  }
   }
 
   return (
@@ -65,7 +66,12 @@ export default function NewProject({ onAdd, onCancel }) {
           <div>
             <InputLabel ref={title} type="text" Label="Title" required />
             <InputLabel ref={description} Label="Description" textArea />
-            <InputLabel ref={dueDate} type="date" max='9999-12-31' Label="Due Date" />
+            <InputLabel
+              ref={dueDate}
+              type="date"
+              max="9999-12-31"
+              Label="Due Date"
+            />
           </div>
         </form>
       </div>
